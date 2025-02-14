@@ -10,10 +10,9 @@ EXTENDS TLC, Sequences, SequencesExt, Naturals, FiniteSets, Bags, Json, IOUtils,
 (* Replace Nil constant *)
 TraceNil == "null"
 
-(* Replace RM constant *)
+(* Replace RM constant using the Config set in TraceSpec (from CONFIG_PATH) *)
 TraceRM ==
     ToSet(Config[1].RM)
-    \* ToSet(JsonTrace[1].RM)
 
 (* Can be extracted from init *)
 TPDefault(varName) ==

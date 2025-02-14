@@ -12,8 +12,6 @@ Vars == Print(<<"Trace spec isn't valid, you should override 'Vars'.">>, <<>>)
 BaseInit == Print(<<"Trace spec isn't valid, you should override 'BaseInit'.">>, Nil)
 TraceNext == Print(<<"Trace spec isn't valid, you should override 'TraceNext'.">>, Nil)
 UpdateVariables(logline) == Print(<<"Trace spec isn't valid, you should override 'UpdateVariables'.">>, Nil)
-\*ASSUME Vars /= <<>>
-\*ASSUME TraceNext # Nil
 
 (* Read trace *)
 Trace ==
