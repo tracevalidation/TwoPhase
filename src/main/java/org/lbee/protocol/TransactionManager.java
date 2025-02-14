@@ -1,18 +1,17 @@
 package org.lbee.protocol;
 
-import org.lbee.helpers.Helper;
-import org.lbee.instrumentation.trace.TLATracer;
-import org.lbee.instrumentation.trace.VirtualField;
-import org.lbee.network.NetworkManager;
-import org.lbee.network.TimeOutException;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.lbee.helpers.Helper;
+import org.lbee.instrumentation.trace.TLATracer;
+import org.lbee.instrumentation.trace.VirtualField;
+import org.lbee.network.NetworkManager;
+import org.lbee.network.TimeOutException;
 
 public class TransactionManager extends Manager {
     // Timeout for receiving messages
@@ -128,7 +127,7 @@ public class TransactionManager extends Manager {
                 this.preparedRMs.add(preparedRM);
                 // trace the state change
                 traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                tracer.log("TMRcvPrepared"); // log corresponding event
+                tracer.log("TMRcvPrepared", new Object[] { preparedRM }); // log corresponding event
                 // tracer.log();
             }
         }

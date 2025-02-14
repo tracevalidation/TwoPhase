@@ -1,0 +1,14 @@
+{}
+{"event": "RMPrepare"}
+{"event": "RMPrepare"}
+{"event": "RMPrepare"}
+{"event": "RMPrepare"}
+{"event": "TMRcvPrepared"}
+{"event": "TMRcvPrepared"}
+{"event": "TMRcvPrepared"}
+{"event": "TMRcvPrepared"}
+{"event": "TMCommit"}
+{"event": "RMRcvCommitMsg"}
+{"event": "RMRcvCommitMsg"}
+{"event": "RMRcvCommitMsg"}
+{"event": "RMRcvCommitMsg"}

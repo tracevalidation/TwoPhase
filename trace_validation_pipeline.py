@@ -20,6 +20,7 @@ def get_files(config):
 parser = argparse.ArgumentParser("")
 parser.add_argument('-c', '--compile', type=bool, action=argparse.BooleanOptionalAction)
 parser.add_argument('--config', type=str, required=False, default="conf.ndjson", help="Config file")
+parser.add_argument('-dfs', '--dfs', type=bool, action=argparse.BooleanOptionalAction, help="breadth-first search")
 args = parser.parse_args()
 
 config = read_json(args.config)
@@ -50,6 +51,6 @@ trace_merger.run(files, sort=True, remove_meta=True, out="trace.ndjson")
 
 # Validate trace
 print("# Start TLA+ trace spec.\n")
-tla_trace_validation.run_tla("spec/TwoPhaseTrace.tla","trace.ndjson","conf.ndjson")
+tla_trace_validation.run_tla("spec/TwoPhaseTrace.tla","trace.ndjson","conf.ndjson",args.dfs)
 
 # print("End pipeline.")
