@@ -1,0 +1,38 @@
+{}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-0", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-0"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-0"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-1"}]}], "rmState": [{"op": "Update", "path": ["rm-1"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-1"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-2"}]}], "rmState": [{"op": "Update", "path": ["rm-2"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-2"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-1"]}], "event": "TMRcvPrepared", "event_args": ["rm-1"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-7"}]}], "rmState": [{"op": "Update", "path": ["rm-7"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-7"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}], "event": "TMRcvPrepared", "event_args": ["rm-0"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-2"]}], "event": "TMRcvPrepared", "event_args": ["rm-2"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-5"}]}], "rmState": [{"op": "Update", "path": ["rm-5"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-5"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-3"}]}], "rmState": [{"op": "Update", "path": ["rm-3"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-3"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-9"}]}], "rmState": [{"op": "Update", "path": ["rm-9"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-9"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-7"]}], "event": "TMRcvPrepared", "event_args": ["rm-7"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-11", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-11"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-11"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-6", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-6"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-6"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-8", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-8"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-8"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-5"]}], "event": "TMRcvPrepared", "event_args": ["rm-5"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-3"]}], "event": "TMRcvPrepared", "event_args": ["rm-3"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-9"]}], "event": "TMRcvPrepared", "event_args": ["rm-9"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-4"}]}], "rmState": [{"op": "Update", "path": ["rm-4"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-4"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-8"]}], "event": "TMRcvPrepared", "event_args": ["rm-8"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-11"]}], "event": "TMRcvPrepared", "event_args": ["rm-11"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-10"}]}], "rmState": [{"op": "Update", "path": ["rm-10"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-10"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-4"]}], "event": "TMRcvPrepared", "event_args": ["rm-4"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-6"]}], "event": "TMRcvPrepared", "event_args": ["rm-6"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-10"]}], "event": "TMRcvPrepared", "event_args": ["rm-10"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Commit"}]}], "tmState": [{"op": "Update", "path": [], "args": ["done"]}], "event": "TMCommit"}
+{"rmState": [{"op": "Update", "path": ["rm-10"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-10"]}
+{"rmState": [{"op": "Update", "path": ["rm-1"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-1"]}
+{"rmState": [{"op": "Update", "path": ["rm-2"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-2"]}
+{"rmState": [{"op": "Update", "path": ["rm-3"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-3"]}
+{"rmState": [{"op": "Update", "path": ["rm-5"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-5"]}
+{"rmState": [{"op": "Update", "path": ["rm-9"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-9"]}
+{"rmState": [{"op": "Update", "path": ["rm-7"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-7"]}
+{"rmState": [{"op": "Update", "path": ["rm-4"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-4"]}
+{"rmState": [{"op": "Update", "path": ["rm-11"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-11"]}
+{"rmState": [{"op": "Update", "path": ["rm-6"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-6"]}
+{"rmState": [{"op": "Update", "path": ["rm-8"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-8"]}
+{"rmState": [{"op": "Update", "path": ["rm-0"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-0"]}
