@@ -79,7 +79,7 @@ public class TransactionManager extends Manager {
         // traceTmPrepared.clear();
         // shouldn't log initial state for variables potentially modified by several processes
         // traceMessages.clear();
-        tracer.log();
+        // tracer.log();
         // keep receiving messages until all RMs are prepared or they take too long to
         // send PREPARED
         while (!done) {
