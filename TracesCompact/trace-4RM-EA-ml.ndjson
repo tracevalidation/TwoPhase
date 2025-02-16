@@ -5,7 +5,9 @@
 {"event": "TMRcvPrepared", "event_args": ["rm-3"]}
 {"event": "TMRcvPrepared", "event_args": ["rm-0"]}
 {"event": "TMRcvPrepared", "event_args": ["rm-1"]}
+{"event": "TMRcvPrepared", "event_args": ["rm-3"]}
 {"event": "TMRcvPrepared", "event_args": ["rm-2"]}
+{"event": "TMRcvPrepared", "event_args": ["rm-0"]}
 {"event": "TMCommit"}
 {"event": "RMRcvCommitMsg", "event_args": ["rm-3"]}
 {"event": "RMRcvCommitMsg", "event_args": ["rm-0"]}

@@ -1,4 +1,3 @@
-{}
 {"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-0", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-0"], "args": ["prepared"]}]}
 {"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-1"}]}], "rmState": [{"op": "Update", "path": ["rm-1"], "args": ["prepared"]}]}
 {"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-4"}]}], "rmState": [{"op": "Update", "path": ["rm-4"], "args": ["prepared"]}]}
