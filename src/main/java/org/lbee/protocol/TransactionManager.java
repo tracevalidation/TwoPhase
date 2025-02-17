@@ -14,6 +14,7 @@ import org.lbee.network.NetworkManager;
 import org.lbee.network.TimeOutException;
 
 public class TransactionManager extends Manager {
+
     // Timeout for receiving messages
     private final static int RECEIVE_TIMEOUT = 100;
     // Abort if not all RMs sent before ABORT_TIMEOUT
@@ -69,7 +70,6 @@ public class TransactionManager extends Manager {
 
     @Override
     public void run() throws IOException {
-        boolean done = false;
         long startTime = System.currentTimeMillis();
         // initialising phase
         this.initialising();
@@ -82,7 +82,7 @@ public class TransactionManager extends Manager {
         // tracer.log();
         // keep receiving messages until all RMs are prepared or they take too long to
         // send PREPARED
-        while (!done) {
+        while (true) {
             // block on receiving message until timeout, retry if timeout
             boolean messageReceived = false;
             do {
@@ -91,8 +91,8 @@ public class TransactionManager extends Manager {
                 // sent an abort even if all RMs are prepared.
                 if (System.currentTimeMillis() - startTime > ABORT_TIMEOUT) {
                     this.abort();
-                    done = true;
-                    break;
+                    System.out.println("-- TM  aborted (timeout)");
+                    return;
                 }
                 try {
                     Message message = networkManager.receive(this.name, RECEIVE_TIMEOUT);
@@ -107,17 +107,16 @@ public class TransactionManager extends Manager {
                 // the trace is still consistent (but not complete) even if the TM doesn't
                 // send the last commit message (comment out the next line to get this behaviour)
                 this.commit();
-                done = true;
+                System.out.println("-- TM  shutdown");
+                return;
             }
         }
-        System.out.println("-- TM  shutdown");
     }
 
     /**
      * Handles the message received from an RM (corresponds to the action
-     * TMRcvPrepared).
-     * Only PREPARED messages from RMs managed by the TM are handled.
-     * The RM sending the message is added to the preparedRMs set.
+     * TMRcvPrepared). Only PREPARED messages from RMs managed by the TM are
+     * handled. The RM sending the message is added to the preparedRMs set.
      */
     private void handleMessage(Message message) throws IOException {
         if (message.getContent().equals(TwoPhaseMessage.Prepared.toString())) {
@@ -127,7 +126,7 @@ public class TransactionManager extends Manager {
                 this.preparedRMs.add(preparedRM);
                 // trace the state change
                 traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                tracer.log("TMRcvPrepared", new Object[] { preparedRM }); // log corresponding event
+                tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
                 // tracer.log();
             }
         }
@@ -142,8 +141,7 @@ public class TransactionManager extends Manager {
      */
     private void abort() throws IOException {
         // trace the state change
-        traceMessages.add(Map.of("type", TwoPhaseMessage.Abort.toString())); // the abort message is added to the set of
-                                                                             // messages
+        traceMessages.add(Map.of("type", TwoPhaseMessage.Abort.toString())); // the abort message is added to messages
         traceState.update("done"); // the state is set to done
         // should log before the message is sent
         tracer.log("TMAbort"); // log event
