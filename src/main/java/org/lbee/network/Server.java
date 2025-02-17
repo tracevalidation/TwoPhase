@@ -26,7 +26,6 @@ public class Server {
             }
         } catch (IOException ex) {
             System.out.println("Server exception: " + ex.getMessage());
-            ex.printStackTrace();
         }
     }
 }

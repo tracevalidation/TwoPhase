@@ -1,11 +1,10 @@
 package org.lbee.network;
 
-import org.lbee.protocol.Message;
-
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
+
+import org.lbee.protocol.Message;
 
 /**
  * Bucket where processes can pick some received messages

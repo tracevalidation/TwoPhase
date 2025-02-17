@@ -38,7 +38,7 @@ public class ResourceManager extends Manager {
     private final VirtualField traceMessages;
     private final VirtualField traceState;
     // just for showing alternative way of tracing
-    private final VirtualField traceStateRMs;
+    // private final VirtualField traceStateRMs;
 
     /**
      * Construct a resource manager
@@ -62,7 +62,8 @@ public class ResourceManager extends Manager {
         // prepare tracing
         this.traceMessages = tracer.getVariableTracer("msgs");
         this.traceState = tracer.getVariableTracer("rmState").getField(this.name);
-        this.traceStateRMs = tracer.getVariableTracer("rmState");
+        // just for showing alternative way of tracing
+        // this.traceStateRMs = tracer.getVariableTracer("rmState");
 
         System.out.println("RM " + name + " WORKING - " + taskDuration + " ms");
     }

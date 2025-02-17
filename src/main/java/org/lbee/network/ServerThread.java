@@ -1,20 +1,26 @@
 package org.lbee.network;
 
-import org.lbee.protocol.Message;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+
+import org.lbee.protocol.Message;
 
 public class ServerThread extends Thread {
 
     private final Socket socket;
-    private final MessageBucket networkMock;
+    private final MessageBucket<MessageBox> networkMock;
 
-    public ServerThread(Socket socket, MessageBucket networkMock) {
+    public ServerThread(Socket socket, MessageBucket<MessageBox> networkMock) {
         this.socket = socket;
         this.networkMock = networkMock;
     }
 
+    @Override
     public void run() {
         try {
             InputStream input = socket.getInputStream();
@@ -56,7 +62,6 @@ public class ServerThread extends Thread {
             socket.close();
         } catch (IOException ex) {
             System.out.println("Server exception: " + ex.getMessage());
-            ex.printStackTrace();
         }
     }
 }
