@@ -63,7 +63,7 @@ def run(RMs, TM):
         rm_process = Popen(args)
         # if duration is the same for all RMs the bug (in TM) has much less chances to appear
         # can keep the same duration for the benchmarks when the bug is fixed
-        # duration += 20
+        duration += 20
         rm_processes.append(rm_process)
 
     # Wait for all clients to be finished

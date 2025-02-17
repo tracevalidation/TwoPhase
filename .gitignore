@@ -121,7 +121,6 @@ __pycache__
 .vscode/
 
 # temporary trace and clock
-Traces/
 trace.ndjson
 rm-*.ndjson
 tm.ndjson
