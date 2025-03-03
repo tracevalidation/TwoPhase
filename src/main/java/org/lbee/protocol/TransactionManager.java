@@ -18,7 +18,7 @@ public class TransactionManager extends Manager {
     // Timeout for receiving messages
     private final static int RECEIVE_TIMEOUT = 100;
     // Abort if not all RMs sent before ABORT_TIMEOUT
-    private final static int ABORT_TIMEOUT = 4000; // 100
+    private final static int ABORT_TIMEOUT = 100; // 4000; // 100
     // maximum duration of the initialisation phase
     private static final int MAX_INIT_DURATION = 100;
 
@@ -97,6 +97,7 @@ public class TransactionManager extends Manager {
                 try {
                     Message message = networkManager.receive(this.name, RECEIVE_TIMEOUT);
                     this.handleMessage(message);
+                    // this.handleMessageAndCommit(message);
                     messageReceived = true;
                 } catch (TimeOutException e) {
                     System.out.println("TM received TIMEOUT");
@@ -104,8 +105,10 @@ public class TransactionManager extends Manager {
             } while (!messageReceived);
 
             if (checkAllPrepared()) {
-                // the trace is still consistent (but not complete) even if the TM doesn't
+                // alt1: the trace is still consistent (but not complete) even if the TM doesn't
                 // send the last commit message (comment out the next line to get this behaviour)
+                // alt2: if using handleMessageAndCommit, the commit is already done with the last 
+                // message and thus not necessary here (comment out the next line to get this behaviour)
                 this.commit();
                 System.out.println("-- TM  shutdown");
                 return;
@@ -128,6 +131,36 @@ public class TransactionManager extends Manager {
                 traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
                 tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
                 // tracer.log();
+            }
+        }
+
+        System.out.println(
+                "TM received " + message.getContent() + " from " + message.getFrom() + " => " + this.preparedRMs);
+    }
+
+    /**
+     * Handles the message received from an RM (corresponds to the action
+     * TMRcvPrepared). Only PREPARED messages from RMs managed by the TM are
+     * handled. The RM sending the message is added to the preparedRMs set.
+     */
+    private void handleMessageAndCommit(Message message) throws IOException {
+        if (message.getContent().equals(TwoPhaseMessage.Prepared.toString())) {
+            String preparedRM = message.getFrom();
+            // if the message is from an RM managed by the TM
+            if (resourceManagers.contains(preparedRM)) {
+                this.preparedRMs.add(preparedRM);
+                if (this.preparedRMs.size() >= this.resourceManagers.size()) { // if last expected message received (all RMs are prepared) commit
+                    // trace the state change even if it's the last message expected from RMs
+                    // traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
+                    // tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
+                    // tracer.log();
+                    this.commit();
+                } else {
+                    // trace the state change
+                    traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
+                    tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
+                    // tracer.log();
+                }
             }
         }
 
