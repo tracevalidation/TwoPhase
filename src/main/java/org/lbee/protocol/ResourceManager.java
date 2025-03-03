@@ -142,10 +142,13 @@ public class ResourceManager extends Manager {
             // this.traceStateRMs.getField(this.name).update(state.toString().toLowerCase(Locale.ROOT));
             // alternative explicit recording of the state change
             // tracer.notifyChange("rmState", List.of(name), "Update",
-            //         List.of(state.toString().toLowerCase(Locale.ROOT)));
+            //                     List.of(state.toString().toLowerCase(Locale.ROOT)));
+            // tracer.notifyChange("rmState", List.of(name), "Update",
+            //                     state.toString().toLowerCase(Locale.ROOT));
             traceMessages.add(Map.of("type", TwoPhaseMessage.Prepared.toString(), "rm", this.name)); // add Add op for
-            // tracer.notifyChange("msgs", new ArrayList<String>(), "AddElement",
-            //         List.of(Map.of("type", TwoPhaseMessage.Prepared.toString(), "rm", this.name)));
+            // tracer.notifyChange("msgs", new ArrayList<>(), "AddElement",
+            //                     Map.of("type", TwoPhaseMessage.Prepared.toString(), "rm", this.name));
+            // traceMessages.apply("AddElement", Map.of("type", TwoPhaseMessage.Prepared.toString(), "rm", this.name)); 
 
             // should log before the message is sent
             tracer.log("RMPrepare", new Object[]{this.name});
