@@ -151,7 +151,7 @@ public class ResourceManager extends Manager {
             // traceMessages.apply("AddElement", Map.of("type", TwoPhaseMessage.Prepared.toString(), "rm", this.name)); 
 
             // should log before the message is sent
-            tracer.log("RMPrepare", new Object[]{this.name});
+            tracer.log("RMPrepare", this.name);
             // tracer.log("RMPrepare");
             // if we log the event name the potential stuttering steps are not detected as
             // such (since RMPrepare demands the state to be necessarily WORKING, no PREPARED)
