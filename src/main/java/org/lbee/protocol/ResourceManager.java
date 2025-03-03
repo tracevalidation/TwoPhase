@@ -115,13 +115,13 @@ public class ResourceManager extends Manager {
         if (message.getContent().equals(TwoPhaseMessage.Commit.toString())) {
             this.state = ResourceManagerState.COMMITTED;
             this.traceState.update(this.state.toString().toLowerCase(Locale.ROOT));
-            tracer.log("RMRcvCommitMsg", new Object[]{this.name});
+            tracer.log("RMRcvCommitMsg", this.name);
             // tracer.log("RMRcvCommitMsg");
             // tracer.log();
         } else if (message.getContent().equals(TwoPhaseMessage.Abort.toString())) {
             this.state = ResourceManagerState.ABORTED;
             this.traceState.update(this.state.toString().toLowerCase(Locale.ROOT));
-            tracer.log("RMRcvAbortMsg", new Object[]{this.name});
+            tracer.log("RMRcvAbortMsg", this.name);
             // tracer.log("RMRcvAbortMsg");
             // tracer.log();
         }

@@ -88,7 +88,7 @@ public class TransactionManager extends Manager {
             do {
                 // Abort if not all RMs sent PREPARED before ABORT_TIMEOUT.
                 // This test should be done before receiving a message, otherwise the TM might
-                // sent an abort even if all RMs are prepared.
+                // send an abort even if all RMs are prepared.
                 if (System.currentTimeMillis() - startTime > ABORT_TIMEOUT) {
                     this.abort();
                     System.out.println("-- TM  aborted (timeout)");
@@ -129,7 +129,7 @@ public class TransactionManager extends Manager {
                 this.preparedRMs.add(preparedRM);
                 // trace the state change
                 traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
+                tracer.log("TMRcvPrepared", preparedRM); // log corresponding event
                 // tracer.log();
             }
         }
@@ -151,14 +151,15 @@ public class TransactionManager extends Manager {
                 this.preparedRMs.add(preparedRM);
                 if (this.preparedRMs.size() >= this.resourceManagers.size()) { // if last expected message received (all RMs are prepared) commit
                     // trace the state change even if it's the last message expected from RMs
+                    // (if not traced, action composition should be used in trace validation)
                     // traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                    // tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
+                    // tracer.log("TMRcvPrepared", preparedRM); // log corresponding event
                     // tracer.log();
                     this.commit();
                 } else {
                     // trace the state change
                     traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                    tracer.log("TMRcvPrepared", new Object[]{preparedRM}); // log corresponding event
+                    tracer.log("TMRcvPrepared", preparedRM); // log corresponding event
                     // tracer.log();
                 }
             }
@@ -188,8 +189,6 @@ public class TransactionManager extends Manager {
     }
 
     protected boolean checkAllPrepared() {
-        // System.out.println("TM check commit (rms = " + this.preparedRMs + ", this.resourceManagers = "
-        //         + this.resourceManagers + ")");
         return this.preparedRMs.size() >= this.resourceManagers.size();
     }
 
@@ -203,7 +202,7 @@ public class TransactionManager extends Manager {
         // we can also trace the state
         traceState.update("done");
         // alternative log directly with the tracer
-        // tracer.notifyChange("tmState", new ArrayList<>(), "Update", List.of("done"));
+        // tracer.notifyChange("tmState", new ArrayList<>(), "Update", "done");
         // should log before the message is sent
         tracer.log("TMCommit");
         // tracer.log();
