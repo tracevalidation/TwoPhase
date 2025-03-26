@@ -1,0 +1,14 @@
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-0", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-0"], "args": ["prepared"]}], "event": "RMPrepare", "desc": "rm-0"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}], "event": "TMRcvPrepared", "desc": "rm-0"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-1", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-1"], "args": ["prepared"]}], "event": "RMPrepare", "desc": "rm-1"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-1"]}], "event": "TMRcvPrepared", "desc": "rm-1"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}], "event": "TMRcvPrepared", "desc": "rm-0"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-2", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-2"], "args": ["prepared"]}], "event": "RMPrepare", "desc": "rm-2"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-2"]}], "event": "TMRcvPrepared", "desc": "rm-2"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-3"}]}], "rmState": [{"op": "Update", "path": ["rm-3"], "args": ["prepared"]}], "event": "RMPrepare", "desc": "rm-3"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-3"]}], "event": "TMRcvPrepared", "desc": "rm-3"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Commit"}]}], "tmState": [{"op": "Update", "path": [], "args": ["done"]}], "event": "TMCommit"}
+{"rmState": [{"op": "Update", "path": ["rm-1"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "desc": "rm-1"}
+{"rmState": [{"op": "Update", "path": ["rm-3"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "desc": "rm-3"}
+{"rmState": [{"op": "Update", "path": ["rm-2"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "desc": "rm-2"}
+{"rmState": [{"op": "Update", "path": ["rm-0"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "desc": "rm-0"}
