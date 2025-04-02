@@ -24,19 +24,23 @@ TPDefault(varName) ==
 TPUpdateVariables(t) ==
     /\
         IF "rmState" \in DOMAIN t
-        THEN rmState' = UpdateVariable(rmState, "rmState", t)
+        \* THEN rmState' = UpdateVariable(rmState, "rmState", t)
+        THEN rmState' = ApplyUpdates(rmState, "rmState", t["rmState"])
         ELSE TRUE
     /\
         IF "tmState" \in DOMAIN t
-        THEN tmState' = UpdateVariable(tmState, "tmState", t)
+        \* THEN tmState' = UpdateVariable(tmState, "tmState", t)
+        THEN tmState' = ApplyUpdates(tmState, "tmState", t["tmState"])
         ELSE TRUE
     /\
         IF "tmPrepared" \in DOMAIN t
-        THEN tmPrepared' = UpdateVariable(tmPrepared, "tmPrepared", t)
+        \* THEN tmPrepared' = UpdateVariable(tmPrepared, "tmPrepared", t)
+        THEN tmPrepared' = ApplyUpdates(tmPrepared, "tmPrepared", t["tmPrepared"])
         ELSE TRUE
     /\
         IF "msgs" \in DOMAIN t
-        THEN msgs' = UpdateVariable(msgs, "msgs", t)
+        \* THEN msgs' = UpdateVariable(msgs, "msgs", t)
+        THEN msgs' = ApplyUpdates(msgs, "msgs", t["msgs"])
         ELSE TRUE
 
 (* Predicate actions *)
@@ -80,16 +84,27 @@ IsRMRcvAbortMsg ==
         ELSE
             \E r \in RM : RMRcvAbortMsg(r)
 
+IsStutteringRMPrepare == 
+    /\ IsEvent("RMPrepare")
+    /\ UNCHANGED Vars
+
 TPTraceNext ==
         \/ IsTMCommit
         \/ IsTMAbort
         \/ IsTMRcvPrepared
         \/ IsRMPrepare
         \/ IsRMRcvCommitMsg
-        \/ IsRMRcvAbortMsg
+        \/ IsRMRcvAbortMsg 
+        \* Accept the commmit in the same time as the receipt of the last prepared message
+        \*  (in fact, not really the last)
+        \* \/ (\E r \in RM : TMRcvPrepared(r) /\ l'=l) \cdot IsTMCommit
+        \*  Consider RMPrepare as stuttering if it doesn't change the state
+        \* \/ IsStutteringRMPrepare 
 
 (* Eventually composed actions *)
-ComposedNext == FALSE
+ComposedNext == 
+    FALSE 
+    \* (\E r \in RM : TMRcvPrepared(r)) \cdot TMCommit
 
 BaseSpec == TPInit /\ [][TPNext \/ ComposedNext]_vars
 -----------------------------------------------------------------------------

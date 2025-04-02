@@ -39,23 +39,26 @@ IsEvent(e) ==
     /\ IF "event" \in DOMAIN logline THEN logline.event = e ELSE TRUE
     /\ l' = l + 1
     /\ UpdateVariables(logline)
+  
+SomeEvent ==
+    /\ l \in 1..Len(Trace)
+    /\ l' = l + 1
+    /\ UpdateVariables(logline)
 
 TraceInit ==
     /\ l = 1
     /\ BaseInit
 
-IsStuttering ==
-    /\ IsEvent("Stuttering")
+IsStuttering == 
+    /\ l \in 1..Len(Trace)
+    /\ l' = l + 1
+    /\ UpdateVariables(logline)
     /\ UNCHANGED Vars
 
 TraceSpec ==
-    \* Because of  [A]_v <=> A \/ v=v'  , the following formula is logically
-     \* equivalent to the (canonical) Spec formula Init /\ [][Next]_vars.
-     \* However, TLC's breadth-first algorithm does not explore successor
-     \* states of a *seen* state.  Since one or more states may appear one or
-     \* more times in the the trace, the  UNCHANGED vars  combined with the
-     \*  TraceView  that includes  TLCGet("level")  is our workaround.
-    TraceInit /\ [][TraceNext \/ IsStuttering]_<<l, Vars>>
+    TraceInit /\ [][TraceNext]_<<l, Vars>>
+    \* Consider named events as stuttering if they don't change the state
+    \* TraceInit /\ [][TraceNext \/ IsStuttering]_<<l, Vars>>
 
 TraceAccepted ==
     LET d == TLCGet("stats").diameter IN
