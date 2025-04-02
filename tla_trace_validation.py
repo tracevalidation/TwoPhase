@@ -26,6 +26,7 @@ def run_tla(trace_spec,trace="trace.ndjson",config="conf.ndjson",dfs=False):
         tla_trace_validation_process = Popen([
             "java",
             "-XX:+UseParallelGC",
+            "-Dtlc2.tool.impl.Tool.cdot=true",
             "-cp",
             tla_cp,
             "tlc2.TLC",
