@@ -1,0 +1,10 @@
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-0"}]}], "rmState": [{"op": "Update", "path": ["rm-0"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-0"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}], "event": "TMRcvPrepared"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-1"}]}], "rmState": [{"op": "Update", "path": ["rm-1"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-1"]}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-1"]}], "event": "TMRcvPrepared"}
+{"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}], "event": "TMRcvPrepared"}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Commit"}]}], "tmState": [{"op": "Update", "path": [], "args": ["done"]}], "event": "TMCommit"}
+{"rmState": [{"op": "Update", "path": ["rm-0"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-0"]}
+{"rmState": [{"op": "Update", "path": ["rm-2"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-2"]}
+{"rmState": [{"op": "Update", "path": ["rm-1"], "args": ["committed"]}], "event": "RMRcvCommitMsg", "event_args": ["rm-1"]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-2"}]}], "rmState": [{"op": "Update", "path": ["rm-2"], "args": ["prepared"]}], "event": "RMPrepare", "event_args": ["rm-2"]}
