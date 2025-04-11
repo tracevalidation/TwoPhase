@@ -1,6 +1,9 @@
 # Two Phase
 
-An implementation of Two phase protocol (simplified) specification.
+An implementation of Two phase protocol (simplified) specification. 
+
+- `spec/**`: contains the `TwoPhase` specification and trace specification
+- `src/**`: contains the `TwoPhase` implementation
 
 # Prerequisites
 
