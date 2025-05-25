@@ -1,0 +1,15 @@
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-0"}]}], "rmState": [{"op": "Update", "path": ["rm-0"], "args": ["prepared"]}]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-2"}]}], "rmState": [{"op": "Update", "path": ["rm-2"], "args": ["prepared"]}]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"rm": "rm-3", "type": "Prepared"}]}], "rmState": [{"op": "Update", "path": ["rm-3"], "args": ["prepared"]}]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Prepared", "rm": "rm-1"}]}], "rmState": [{"op": "Update", "path": ["rm-1"], "args": ["prepared"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-3"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-0"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-1"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-3"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-2"]}]}
+{"tmState": [{"op": "Unchanged", "path": [], "args": []}],"tmPrepared": [{"op": "AddElement", "path": [], "args": ["rm-3"]}]}
+{"msgs": [{"op": "AddElement", "path": [], "args": [{"type": "Commit"}]}], "tmState": [{"op": "Update", "path": [], "args": ["done"]}]}
+{"rmState": [{"op": "Update", "path": ["rm-3"], "args": ["committed"]}]}
+{"rmState": [{"op": "Update", "path": ["rm-0"], "args": ["committed"]}]}
+{"rmState": [{"op": "Update", "path": ["rm-2"], "args": ["committed"]}]}
+{"rmState": [{"op": "Update", "path": ["rm-1"], "args": ["committed"]}]}
