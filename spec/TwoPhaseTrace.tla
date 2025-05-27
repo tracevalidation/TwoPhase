@@ -95,10 +95,9 @@ TPTraceNext ==
         \/ IsRMPrepare
         \/ IsRMRcvCommitMsg
         \/ IsRMRcvAbortMsg 
-        \* Accept the commmit in the same time as the receipt of the last prepared message
-        \*  (in fact, not really the last)
+        \* Alternative: accept the commmit in the same time as the receipt of the last prepared message
         \* \/ (\E r \in RM : TMRcvPrepared(r) /\ l'=l) \cdot IsTMCommit
-        \*  Consider RMPrepare as stuttering if it doesn't change the state
+        \* Alternative: consider RMPrepare as stuttering if it doesn't change the state
         \* \/ IsStutteringRMPrepare 
 
 (* Eventually composed actions *)

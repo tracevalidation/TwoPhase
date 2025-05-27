@@ -113,7 +113,8 @@ RMPrepare(r) ==
   /\ rmState[r] = "working"
   /\ rmState' = [rmState EXCEPT ![r] = "prepared"]
   /\ msgs' = msgs \cup {[type |-> "Prepared", rm |-> r]}
-  /\ UNCHANGED <<tmState, tmPrepared>>
+  /\ tmPrepared' = tmPrepared
+  /\ UNCHANGED <<tmState>>
 
 RMRcvCommitMsg(r) ==
   (*************************************************************************)
