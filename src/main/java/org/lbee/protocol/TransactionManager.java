@@ -129,7 +129,7 @@ public class TransactionManager extends Manager {
                 this.preparedRMs.add(preparedRM);
                 // trace the state change
                 traceTmPrepared.add(preparedRM); // the RM is added to the set of prepared RMs
-                traceState.unchanged(); // the state is still init
+                traceState.unchanged(); // explicit log of UNCHANGED variable
                 tracer.log("TMRcvPrepared", preparedRM); // log corresponding event
                 // tracer.log();
             }
