@@ -7,8 +7,8 @@ EXTENDS TLC, Sequences, SequencesExt, Naturals, FiniteSets, Bags, Json, IOUtils
 CONSTANT Nil
 (* Operators to override *)
 Default(varName) ==  Print(<<"Trace spec isn't valid, you should override 'Default' operator.">>, Nil)
-MapArgs(mapFunction, cur, default, op, args) == Print(<<"Trace spec isn't valid, you should override 'MapArgs' operator.">>, Nil)
-MapArgsBase(mapFunction, cur, default, op, args) == args
+MapArgs(mapFunction, cur, op, args) == Print(<<"Trace spec isn't valid, you should override 'MapArgs' operator.">>, Nil)
+MapArgsBase(mapFunction, cur, op, args) == args
 
 (* Generic operators *)
 Update(cur, val) == val
@@ -42,9 +42,8 @@ SubInteger(cur, val) == cur - val
 Unchanged(cur, val) == cur
 
 
-Apply(op, var, default, args) ==
-    CASE op = "Init" -> Update(var, default)
-    []   op = "Update" -> Update(var, args[1])
+Apply(op, var, args) ==
+    CASE op = "Update" -> Update(var, args[1])
     []   op = "AddElement" -> AddElement(var, args[1])
     []   op = "AddElements" -> AddElements(var, args[1])
     []   op = "RemoveElement" -> RemoveElement(var, args[1])
@@ -56,41 +55,37 @@ Apply(op, var, default, args) ==
     []   op = "ResetKey" -> ResetKey(var, args[1])
     []   op = "SetKey" -> SetKey(var, args[1],args[2])
     []   op = "UpdateRec" -> UpdateRec(var, args[1])
-    \* []   op = "InitWithValue" -> UpdateRec(default, args[1])
-    []   op = "InitRec" -> UpdateRec(var,default)
     []   op = "Add" -> AddInteger(var, args[1])
     []   op = "Sub" -> SubInteger(var, args[1])
     []   op = "Unchanged" -> Unchanged(var, args[1])
 
-RECURSIVE ExceptAtPath(_,_,_,_,_)
-LOCAL ExceptAtPath(op, var, default, path, args) ==
+RECURSIVE ExceptAtPath(_,_,_,_)
+LOCAL ExceptAtPath(op, var, path, args) ==
     LET h == Head(path) IN
     IF Len(path) > 1 THEN
-        [var EXCEPT ![h] = ExceptAtPath(op, var[h], default[h], Tail(path), args)]
+        [var EXCEPT ![h] = ExceptAtPath(op, var[h], Tail(path), args)]
     ELSE
-        [var EXCEPT ![h] = Apply(op, @, default[h], args)]
+        [var EXCEPT ![h] = Apply(op, @, args)]
 
-RECURSIVE ApplyUpdates(_,_,_)
-LOCAL ApplyUpdates(var, varName, updates) ==
+RECURSIVE ApplyUpdates(_,_)
+LOCAL ApplyUpdates(var, updates) ==
     LET update == Head(updates) IN
 
     LET applied ==
         IF Len(update.path) > 0 THEN
-            ExceptAtPath(update.op, var, Default(varName), update.path, update.args)
+            ExceptAtPath(update.op, var, update.path, update.args)
         ELSE
             LET mapArgs ==
                 IF "map" \in DOMAIN update THEN
-                    MapArgs(update.op, update.map, var, Default(varName), update.args)
+                    MapArgs(update.op, update.map, var, update.args)
                 ELSE
                     update.args
             IN
-            Apply(update.op, var, Default(varName), mapArgs)
+            Apply(update.op, var, mapArgs)
     IN
     IF Len(updates) > 1 THEN
-        ApplyUpdates(applied, varName, Tail(updates))
+        ApplyUpdates(applied, Tail(updates))
     ELSE
         applied
 
-UpdateVariable(var, varName, logline) ==
-    ApplyUpdates(var, varName, logline[varName])
 ====
